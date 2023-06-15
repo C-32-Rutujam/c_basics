@@ -1,0 +1,22 @@
+//Harshad's number : sum of the number is divisible by that number
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+int c=0,r,n,n1;
+clrscr();
+printf("Enter the number:");         //24
+scanf("%d",&n);
+n=n1;                      //n=24
+while(n!=0)
+{
+r=n%10;
+c=c+r;
+n=n/10;
+}
+if(n1<c)
+printf("Number is abundant number");
+else
+printf("The number is not abundant number");
+getch();
+}
