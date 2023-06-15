@@ -1,0 +1,109 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<stdlib.h>
+void main()
+{
+ struct node
+
+ {
+   int data;
+   struct node *next,*prev;
+ };
+ struct node *p,*s,*t,*q,*r,*m;
+ int i=0,num;
+ int n;
+ int newnode,pos,j=1;
+ clrscr();
+ printf("Enter the number of elements :");
+ scanf("%d",&n);
+ while (i<n)
+ {
+   printf("Enter value : ");
+   scanf("%d",&num);
+   t = (struct node *)malloc(sizeof(struct node));
+   t->data=num;
+   t->next=NULL;
+   t->prev=NULL;
+   if(i==0)
+   {
+     p=t;
+     s=t;
+   }
+   else
+   {
+     p->next = t;
+     t->prev = p;
+     p = p->next;  // OR p=t;        // initially p was pointing to 1st node late when next node is made it will point it to that node to connect the rest of the nodes forming ll
+   }
+   i++;
+  }
+  printf("\n List is : ");
+  p=s;
+  while (p->next!=NULL)
+  {
+    printf("%d ",p->data);
+    p=p->next;
+  }
+  printf("%d ",p->data);
+  printf("\n Reverse List is : ");
+//  p=q;
+  while(p!= NULL)
+  {
+    printf("%d ",p->data);
+    p=p->prev;
+  }
+
+/**************************Insertion of node*********************************/
+
+  printf("\nEnter the number to be add in node : ");
+  scanf("%d",&newnode);
+  printf("\nEnter at which position is to be inserted :");
+  scanf("%d",&pos);                                          //3
+  r= (struct node *)malloc(sizeof(struct node));
+  r->data=newnode;
+  p=s;
+  if(pos==1)
+  {
+     r->next=p;
+     p->prev=r;
+     r->prev=NULL;
+     s=r;
+     p=r;
+       while(p->next!=NULL)
+       {
+       p=p->next;
+       }
+      // p->next=r;
+      // r->prev=p;
+  }
+  else
+  {
+  while(j!=pos-1)                                            //j!=2
+  {
+    p=p->next;
+    j++;
+  }
+  r->next=p->next;
+  p->next=r;
+  r->prev=p;
+  m=r;
+  m=m->next;
+  m->prev=r;
+  }
+  printf("\n New List is :-\n ");
+  p=s;
+  while (p->next!=NULL)
+  {
+    printf("%d ",p->data);
+    p=p->next;
+  }
+  printf("%d",p->data);
+  printf("\nReverse new list is : ");
+  while(p!=NULL)
+  {
+  printf("%d ",p->data);
+  p=p->prev;
+  }
+  getch();
+ }
