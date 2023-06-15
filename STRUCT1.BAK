@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+/*This program is for
+    1. Use of structure
+    2. Display window (Single / Double);
+    3. Display Text message (like Employee Number, Name) on particular position
+       using GOTOXY function. Also get the input (scanf) on particular position
+       using GOTOXY function.
+    4. Stores the data record in file.
+*/
+void mwindow(int,int,int,int,char);
+void main()
+{
+  FILE *fp;
+  char yn ='Y';
+  int ln;
+  struct data
+  {
+     char empno[10];
+     char name[40];
+     char jdate[10];
+     char grade[5];
+     int basic;
+  };
+  struct data d;
+  fp = fopen("data.txt","a+");
+  while (yn=='Y' || yn == 'y')
+  {
+     clrscr();
+     mwindow(20,4,60,14,'S');
+     gotoxy(32,3);
+     printf("Employee Details");
+     gotoxy(22,5);
+     printf("Employee Number       :");
+     gotoxy(22,6);
+     printf("Employee Name         :");
+     gotoxy(22,7);
+     printf("Employee Joining Date :");
+     gotoxy(22,8);
+     printf("Employees Grade       :");
+     gotoxy(22,9);
+     printf("Employees Basic       :");
+     gotoxy(22,11);
+     printf("Do you want to add more ?(Y/N) :");
+     gotoxy(46,5);
+     gets(d.empno);
+     gotoxy(46,6);
+     gets(d.name);
+     gotoxy(46,7);
+     gets(d.jdate);
+     gotoxy(46,8);
+     gets(d.grade);
+     gotoxy(46,9);
+     scanf("%d",&d.basic);
+     ln=getchar();
+     gotoxy(54,11);
+     scanf("%c",&yn);
+     ln=getchar();
+     fwrite(&d,1,sizeof(struct data),fp);
+   }
+    fclose(fp);
+}
+
+void mwindow(int x1,int y1,int x2,int y2, char wtype)
+{
+  char ltc, rtc, lbc, rbc, hlc, vlc;
+  int i,j;
+if (wtype == 'D')
+ { ltc=201;
+   rtc=187;
+   lbc=200;
+   rbc=188;
+   hlc=205;
+   vlc=186;}
+else
+ { ltc=218;
+   rtc=191;
+   lbc=192;
+   rbc=217;
+   hlc=196;
+   vlc=179;}
+for (i=x1;i<=x2;i++)
+{
+  gotoxy(i,y1);
+  printf("%c",hlc);
+  gotoxy(i,y2);
+  printf("%c",hlc);
+}
+
+for (j=y1+1;j<=y2;j++)
+{
+  gotoxy(x1,j);
+  printf("%c",vlc);
+  gotoxy(x2,j);
+  printf("%c",vlc);
+}
+gotoxy(x1,y1);
+printf("%c",ltc);
+gotoxy(x1,y2);
+printf("%c",lbc);
+
+gotoxy(x2,y1);
+printf("%c",rtc);
+gotoxy(x2,y2);
+printf("%c",rbc);
+}
