@@ -1,0 +1,55 @@
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+#include<stdlib.h>
+void main()
+{
+ struct node
+ {
+   int data;
+   struct node *next,*prev;
+ };
+ struct node *p,*s,*t;
+ int i=0,num;
+ int n,j,pos;
+ clrscr();
+ printf("Enter the number of elements :");
+ scanf("%d",&n);
+ while (i<n)
+ {
+   printf("Enter value : ");
+   scanf("%d",&num);
+   t = (struct node *)malloc(sizeof(struct node));
+   t->data=num;
+   t->next=NULL;
+   t->prev=NULL;
+   if(i==0)
+   {
+     p=t;
+     s=t;
+   }
+   else
+   {
+     p->next = t;
+     t->prev = p;
+     p = p->next;  // OR p=t;        // initially p was pointing to 1st node late when next node is made it will point it to that node to connect the rest of the nodes forming ll
+   }
+   i++;
+  }
+  printf("\n List is :-\n ");
+  p=s;
+  while (p->next!=NULL)
+  {
+    printf("%d ",p->data);
+    p=p->next;
+  }
+  printf("%d ",p->data);
+  printf("\n Reverse List is :-\n ");
+//  p=q;
+  while(p!= NULL)
+  {
+    printf("%d ",p->data);
+    p=p->prev;
+  }
+  getch();
+ }
